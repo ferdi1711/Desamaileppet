@@ -1,0 +1,41 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title class="ion-text-center">Login</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding" style="--background: linear-gradient(to bottom, #e0f2f1, #ffffff);">
+
+  <div class="ion-text-center ion-margin-top">
+    <ion-img 
+      src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTYyxmkbY5gtDwVhFUePNIxjYZkEc6k0pJy2A&s"
+      style="width: 100px; height: 100px; border-radius: 50%; margin: 20px auto; box-shadow: 0 4px 12px rgba(0,0,0,0.2);">
+    </ion-img>
+    <h2 style="margin-top: 10px;">Desa Maileppet</h2>
+    <p style="color: #666; margin-top: -8px;">Silakan login untuk melanjutkan</p>
+  </div>
+
+  <ion-card class="ion-padding ion-margin-top" style="border-radius: 16px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+    <ion-item lines="inset">
+      <ion-label position="floating">👤 Username</ion-label>
+      <ion-input [(ngModel)]="username" required></ion-input>
+    </ion-item>
+
+    <ion-item lines="inset">
+      <ion-label position="floating">🔒 Password</ion-label>
+      <ion-input [(ngModel)]="password" type="password" required></ion-input>
+    </ion-item>
+
+    <ion-button expand="block" shape="round" color="primary" class="ion-margin-top" (click)="login()">
+      Login
+      <ion-icon slot="end" name="log-in-outline"></ion-icon>
+    </ion-button>
+  </ion-card>
+
+  <div class="ion-text-center ion-margin-top">
+    <ion-text color="medium">
+      <p>Lupa password? <a href="#" onclick="alert('Hubungi admin desa.')">Klik di sini</a></p>
+    </ion-text>
+  </div>
+
+</ion-content>

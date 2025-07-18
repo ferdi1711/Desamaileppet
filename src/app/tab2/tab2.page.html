@@ -1,0 +1,91 @@
+<ion-header translucent>
+  <ion-toolbar color="primary">
+    <ion-title>Pendataan Warga</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title class="ion-text-center">📋 Formulir Pendataan</ion-card-title>
+      <ion-card-subtitle class="ion-text-center">Desa Maileppet</ion-card-subtitle>
+    </ion-card-header>
+
+    <ion-card-content>
+      <form (ngSubmit)="addRegister()">
+        <ion-item>
+          <ion-icon name="person-circle-outline" slot="start"></ion-icon>
+          <ion-label position="floating">Nama Lengkap</ion-label>
+          <ion-input type="text" [(ngModel)]="namalengkap" name="namalengkap" required></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-icon name="card-outline" slot="start"></ion-icon>
+          <ion-label position="floating">NIK</ion-label>
+          <ion-input type="text" [(ngModel)]="nik" name="nik" maxlength="16" pattern="[0-9]{16}" inputmode="numeric" required></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-icon name="male-female-outline" slot="start"></ion-icon>
+          <ion-label>Jenis Kelamin</ion-label>
+          <ion-select [(ngModel)]="jeniskelamin" name="jeniskelamin" placeholder="Pilih" required>
+            <ion-select-option value="Laki-laki">Laki-laki</ion-select-option>
+            <ion-select-option value="Perempuan">Perempuan</ion-select-option>
+             
+          </ion-select>
+        </ion-item>
+
+        <ion-item>
+          <ion-icon name="calendar-outline" slot="start"></ion-icon>
+          <ion-label position="floating">Tanggal Lahir</ion-label>
+          <ion-input type="date" [(ngModel)]="tanggallahir" name="tanggallahir" required></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-icon name="home-outline" slot="start"></ion-icon>
+          <ion-label position="floating">Alamat</ion-label>
+          <ion-textarea [(ngModel)]="alamat" name="alamat" required></ion-textarea>
+        </ion-item>
+
+        <ion-item>
+          <ion-icon name="heart-outline" slot="start"></ion-icon>
+          <ion-label>Status Pernikahan</ion-label>
+          <ion-select [(ngModel)]="statuspernikahan" name="statuspernikahan" placeholder="Pilih" required>
+            <ion-select-option value="Belum Kawin">Belum Kawin</ion-select-option>
+            <ion-select-option value="Kawin">Kawin</ion-select-option>
+            <ion-select-option value="Cerai Hidup">Cerai Hidup</ion-select-option>
+            <ion-select-option value="Cerai Mati">Cerai Mati</ion-select-option>
+          </ion-select>
+        </ion-item>
+
+        <ion-item>
+          <ion-icon name="briefcase-outline" slot="start"></ion-icon>
+          <ion-label position="floating">Pekerjaan</ion-label>
+          <ion-input type="text" [(ngModel)]="pekerjaan" name="pekerjaan" required></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-icon name="school-outline" slot="start"></ion-icon>
+          <ion-label>Pendidikan Terakhir</ion-label>
+          <ion-select [(ngModel)]="pendidikanterakhir" name="pendidikanterakhir" placeholder="Pilih" required>
+            <ion-select-option value="Tidak Sekolah">Tidak Sekolah</ion-select-option>
+            <ion-select-option value="SD">SD</ion-select-option>
+            <ion-select-option value="SMP">SMP</ion-select-option>
+            <ion-select-option value="SMA/SMK">SMA/SMK</ion-select-option>
+            <ion-select-option value="D1">D1</ion-select-option>
+            <ion-select-option value="D2">D2</ion-select-option>
+            <ion-select-option value="D3">D3</ion-select-option>
+            <ion-select-option value="S1">S1</ion-select-option>
+            <ion-select-option value="S2">S2</ion-select-option>
+            <ion-select-option value="S3">S3</ion-select-option>
+          </ion-select>
+        </ion-item>
+
+        <ion-button expand="block" type="submit" color="success" class="ion-margin-top">
+          <ion-icon name="save-outline" slot="start"></ion-icon>
+          Simpan Data
+        </ion-button>
+      </form>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

@@ -1,0 +1,9 @@
+ion-card-content {
+  display: flex;
+  flex-direction: column;
+}
+
+ion-button {
+  align-self: flex-end;
+  margin-top: 10px;
+}

@@ -1,0 +1,162 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title class="ion-text-center">Beranda</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding" style="--background: linear-gradient(to bottom, #e0f7fa, #ffffff);">
+
+  <!-- 🔰 HEADER VISUAL -->
+  <div class="ion-text-center ion-margin-top">
+    <ion-img 
+      src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTYyxmkbY5gtDwVhFUePNIxjYZkEc6k0pJy2A&s"
+      style="max-width: 120px; margin: 0 auto; border-radius: 50%; box-shadow: 0 4px 12px rgba(0,0,0,0.2);">
+    </ion-img>
+
+    <h2 class="ion-padding-top">👋 Selamat Datang</h2>
+    <h3 style="font-weight: bold;">Aplikasi Pendataan Warga</h3>
+    <p style="margin-top: -10px;">Desa Maileppet</p>
+
+    <ion-text color="medium">
+      <p style="font-style: italic;">"Mudah, cepat, dan akurat dalam pendataan kependudukan."</p>
+    </ion-text>
+  </div>
+
+  <!-- 📢 PENGUMUMAN -->
+  <ion-card color="warning" class="ion-text-center ion-margin-top" style="border-radius: 12px;">
+    <ion-card-content>
+      📢 <strong>Pengumuman:</strong> Pembuatan KTP kolektif dibuka hingga <strong>25 Juni 2025</strong>.
+    </ion-card-content>
+  </ion-card>
+
+ <!-- 📊 RINGKASAN DATA -->
+<ion-card class="ion-margin-top" style="border-radius: 16px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+  <ion-card-header>
+    <ion-card-title class="ion-text-center">📊 Ringkasan Data Warga</ion-card-title>
+  </ion-card-header>
+  <ion-card-content>
+    <ion-grid>
+      <ion-row>
+        <ion-col size="6" class="ion-text-center">
+          <ion-icon name="people" size="large" color="primary"></ion-icon>
+          <h2>{{ totalWarga }}</h2>
+          <p>Total Warga</p>
+        </ion-col>
+        <ion-col size="6" class="ion-text-center">
+          <ion-icon name="man" size="large" color="success"></ion-icon>
+          <h2>{{ wargaLakiLaki }}</h2>
+          <p>Laki-laki</p>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="6" class="ion-text-center">
+          <ion-icon name="woman" size="large" color="tertiary"></ion-icon>
+          <h2>{{ wargaPerempuan }}</h2>
+          <p>Perempuan</p>
+        </ion-col>
+        <ion-col size="6" class="ion-text-center">
+          <ion-icon name="heart-dislike" size="large" color="warning"></ion-icon>
+          <h2>{{ wargaBelumKawin }}</h2>
+          <p>Belum Kawin</p>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-card-content>
+</ion-card>
+
+
+  <!-- 🏡 PROFIL DESA -->
+  <ion-card class="ion-margin-top" style="border-radius: 16px; box-shadow: 0 8px 16px rgba(0,0,0,0.1);">
+    <ion-card-header class="ion-text-center" style="background: linear-gradient(135deg, #66bb6a, #a5d6a7); border-top-left-radius: 16px; border-top-right-radius: 16px;">
+      <ion-card-title style="color: white; font-weight: bold;">🏡 Profil Singkat Desa</ion-card-title>
+      <ion-text color="light">
+        <p style="margin: 4px 0;">Informasi Umum Desa Maileppet</p>
+      </ion-text>
+    </ion-card-header>
+
+    <ion-card-content>
+      <ion-grid>
+        <ion-row>
+          <ion-col size="6">
+            <ion-icon name="location" color="primary"></ion-icon>
+            <strong> Nama Desa:</strong>
+            <p>Maileppet</p>
+          </ion-col>
+          <ion-col size="6">
+            <ion-icon name="map" color="tertiary"></ion-icon>
+            <strong> Kecamatan:</strong>
+            <p>Siberut Selatan</p>
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col size="6">
+            <ion-icon name="business" color="warning"></ion-icon>
+            <strong> Kabupaten:</strong>
+            <p>Kepulauan Mentawai</p>
+          </ion-col>
+          <ion-col size="6">
+            <ion-icon name="layers" color="medium"></ion-icon>
+            <strong> Jumlah Dusun:</strong>
+            <p>5 Dusun</p>
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col size="12" class="ion-text-center">
+            <ion-icon name="expand" color="danger"></ion-icon>
+            <strong> Luas Wilayah:</strong>
+            <p>Luas Pulau Siberut ± 448,3 km² (Sumber: Universitas Andalas)</p>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- ☀️ CUACA -->
+  <ion-card class="ion-margin-top" style="border-radius: 14px;">
+    <ion-card-header>
+      <ion-card-title class="ion-text-center">☀️ Cuaca Hari Ini</ion-card-title>
+    </ion-card-header>
+    <ion-card-content class="ion-text-center">
+      <h3 style="margin-top: 0;">🌤️ Cerah Berawan</h3>
+      <p>28°C | Kelembaban: 80%</p>
+      <p>Angin: 12 km/jam</p>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- 🗺️ LOKASI DESA -->
+  <ion-card class="ion-margin-top" style="border-radius: 14px;">
+    <ion-card-header>
+      <ion-card-title class="ion-text-center">🗺️ Lokasi Desa</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <iframe
+        src="https://www.google.com/maps/embed?pb=..."
+        width="100%" height="200" frameborder="0" style="border:0; border-radius: 12px;" allowfullscreen="">
+      </iframe>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- 🔗 TOMBOL NAVIGASI -->
+  <ion-button expand="block" shape="round" color="primary" (click)="goToDetail()" class="ion-margin-top">
+    Lihat Detail Data Warga
+    <ion-icon name="arrow-forward-circle" slot="end"></ion-icon>
+  </ion-button>
+
+  <ion-button expand="block" shape="round" fill="outline" color="secondary" (click)="goToTab2()">
+    Formulir pendataan
+    <ion-icon name="navigate" slot="end"></ion-icon>
+  </ion-button>
+
+  <ion-button expand="block" shape="round" fill="outline" color="medium" (click)="goToStatistik()">
+    Statistik Lanjutan
+    <ion-icon name="bar-chart" slot="end"></ion-icon>
+  </ion-button>
+
+  <ion-button expand="block" shape="round" fill="solid" color="danger" (click)="logout()" class="ion-margin-top">
+    Logout
+    <ion-icon name="log-out-outline" slot="end"></ion-icon>
+  </ion-button>
+
+</ion-content>
