@@ -1,162 +1,86 @@
-<ion-header>
+<ion-header [translucent]="true">
   <ion-toolbar color="primary">
-    <ion-title class="ion-text-center">Beranda</ion-title>
+    <ion-title>
+      Beranda Penjualan Laptop
+    </ion-title>
+    <ion-buttons slot="end">
+      <ion-button routerLink="/keranjang">
+        <ion-icon name="cart"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="ion-padding" style="--background: linear-gradient(to bottom, #e0f7fa, #ffffff);">
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Beranda Penjualan Laptop</ion-title>
+    </ion-toolbar>
+  </ion-header>
 
-  <!-- 🔰 HEADER VISUAL -->
-  <div class="ion-text-center ion-margin-top">
-    <ion-img 
-      src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTYyxmkbY5gtDwVhFUePNIxjYZkEc6k0pJy2A&s"
-      style="max-width: 120px; margin: 0 auto; border-radius: 50%; box-shadow: 0 4px 12px rgba(0,0,0,0.2);">
-    </ion-img>
+  <div class="ion-padding">
+    <h2>Selamat Datang di Toko Laptop Kami!</h2>
+    <p>Temukan laptop impian Anda dari berbagai merek dan spesifikasi terbaik.</p>
 
-    <h2 class="ion-padding-top">👋 Selamat Datang</h2>
-    <h3 style="font-weight: bold;">Aplikasi Pendataan Warga</h3>
-    <p style="margin-top: -10px;">Desa Maileppet</p>
-
-    <ion-text color="medium">
-      <p style="font-style: italic;">"Mudah, cepat, dan akurat dalam pendataan kependudukan."</p>
-    </ion-text>
-  </div>
-
-  <!-- 📢 PENGUMUMAN -->
-  <ion-card color="warning" class="ion-text-center ion-margin-top" style="border-radius: 12px;">
-    <ion-card-content>
-      📢 <strong>Pengumuman:</strong> Pembuatan KTP kolektif dibuka hingga <strong>25 Juni 2025</strong>.
-    </ion-card-content>
-  </ion-card>
-
- <!-- 📊 RINGKASAN DATA -->
-<ion-card class="ion-margin-top" style="border-radius: 16px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
-  <ion-card-header>
-    <ion-card-title class="ion-text-center">📊 Ringkasan Data Warga</ion-card-title>
-  </ion-card-header>
-  <ion-card-content>
     <ion-grid>
       <ion-row>
-        <ion-col size="6" class="ion-text-center">
-          <ion-icon name="people" size="large" color="primary"></ion-icon>
-          <h2>{{ totalWarga }}</h2>
-          <p>Total Warga</p>
+        <ion-col size="12" size-md="6" size-lg="4">
+          <ion-card>
+            <img src="assets/laptop-gaming.jpg" alt="Laptop Gaming" />
+            <ion-card-header>
+              <ion-card-subtitle>Gaming</ion-card-subtitle>
+              <ion-card-title>ROG Strix G15</ion-card-title>
+            </ion-card-header>
+            <ion-card-content>
+              Laptop gaming bertenaga dengan performa luar biasa untuk pengalaman bermain game yang imersif.
+              <p>Harga: Rp 18.500.000</p>
+              <ion-button expand="block" fill="clear">Lihat Detail</ion-button>
+            </ion-card-content>
+          </ion-card>
         </ion-col>
-        <ion-col size="6" class="ion-text-center">
-          <ion-icon name="man" size="large" color="success"></ion-icon>
-          <h2>{{ wargaLakiLaki }}</h2>
-          <p>Laki-laki</p>
+
+        <ion-col size="12" size-md="6" size-lg="4">
+          <ion-card>
+            <img src="assets/laptop-ultrabook.jpg" alt="Laptop Ultrabook" />
+            <ion-card-header>
+              <ion-card-subtitle>Produktivitas</ion-card-subtitle>
+              <ion-card-title>Dell XPS 13</ion-card-title>
+            </ion-card-header>
+            <ion-card-content>
+              Ultrabook ramping dan ringan, sempurna untuk pekerjaan dan mobilitas tinggi.
+              <p>Harga: Rp 16.000.000</p>
+              <ion-button expand="block" fill="clear">Lihat Detail</ion-button>
+            </ion-card-content>
+          </ion-card>
         </ion-col>
-      </ion-row>
-      <ion-row>
-        <ion-col size="6" class="ion-text-center">
-          <ion-icon name="woman" size="large" color="tertiary"></ion-icon>
-          <h2>{{ wargaPerempuan }}</h2>
-          <p>Perempuan</p>
-        </ion-col>
-        <ion-col size="6" class="ion-text-center">
-          <ion-icon name="heart-dislike" size="large" color="warning"></ion-icon>
-          <h2>{{ wargaBelumKawin }}</h2>
-          <p>Belum Kawin</p>
+
+        <ion-col size="12" size-md="6" size-lg="4">
+          <ion-card>
+            <img src="assets/laptop-budget.jpg" alt="Laptop Budget" />
+            <ion-card-header>
+              <ion-card-subtitle>Terjangkau</ion-card-subtitle>
+              <ion-card-title>Lenovo IdeaPad 3</ion-card-title>
+            </ion-card-header>
+            <ion-card-content>
+              Pilihan cerdas dengan kinerja yang solid untuk kebutuhan sehari-hari tanpa menguras kantong.
+              <p>Harga: Rp 7.200.000</p>
+              <ion-button expand="block" fill="clear">Lihat Detail</ion-button>
+            </ion-card-content>
+          </ion-card>
         </ion-col>
       </ion-row>
     </ion-grid>
-  </ion-card-content>
-</ion-card>
 
+    <h3>Promo Terbaru!</h3>
+    <ion-item lines="none">
+      <ion-icon name="pricetag" slot="start" color="success"></ion-icon>
+      <ion-label>Dapatkan diskon 10% untuk semua laptop gaming bulan ini!</ion-label>
+    </ion-item>
+    <ion-item lines="none">
+      <ion-icon name="gift" slot="start" color="warning"></ion-icon>
+      <ion-label>Gratis tas laptop eksklusif untuk setiap pembelian di atas Rp 15.000.000</ion-label>
+    </ion-item>
 
-  <!-- 🏡 PROFIL DESA -->
-  <ion-card class="ion-margin-top" style="border-radius: 16px; box-shadow: 0 8px 16px rgba(0,0,0,0.1);">
-    <ion-card-header class="ion-text-center" style="background: linear-gradient(135deg, #66bb6a, #a5d6a7); border-top-left-radius: 16px; border-top-right-radius: 16px;">
-      <ion-card-title style="color: white; font-weight: bold;">🏡 Profil Singkat Desa</ion-card-title>
-      <ion-text color="light">
-        <p style="margin: 4px 0;">Informasi Umum Desa Maileppet</p>
-      </ion-text>
-    </ion-card-header>
-
-    <ion-card-content>
-      <ion-grid>
-        <ion-row>
-          <ion-col size="6">
-            <ion-icon name="location" color="primary"></ion-icon>
-            <strong> Nama Desa:</strong>
-            <p>Maileppet</p>
-          </ion-col>
-          <ion-col size="6">
-            <ion-icon name="map" color="tertiary"></ion-icon>
-            <strong> Kecamatan:</strong>
-            <p>Siberut Selatan</p>
-          </ion-col>
-        </ion-row>
-
-        <ion-row>
-          <ion-col size="6">
-            <ion-icon name="business" color="warning"></ion-icon>
-            <strong> Kabupaten:</strong>
-            <p>Kepulauan Mentawai</p>
-          </ion-col>
-          <ion-col size="6">
-            <ion-icon name="layers" color="medium"></ion-icon>
-            <strong> Jumlah Dusun:</strong>
-            <p>5 Dusun</p>
-          </ion-col>
-        </ion-row>
-
-        <ion-row>
-          <ion-col size="12" class="ion-text-center">
-            <ion-icon name="expand" color="danger"></ion-icon>
-            <strong> Luas Wilayah:</strong>
-            <p>Luas Pulau Siberut ± 448,3 km² (Sumber: Universitas Andalas)</p>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
-    </ion-card-content>
-  </ion-card>
-
-  <!-- ☀️ CUACA -->
-  <ion-card class="ion-margin-top" style="border-radius: 14px;">
-    <ion-card-header>
-      <ion-card-title class="ion-text-center">☀️ Cuaca Hari Ini</ion-card-title>
-    </ion-card-header>
-    <ion-card-content class="ion-text-center">
-      <h3 style="margin-top: 0;">🌤️ Cerah Berawan</h3>
-      <p>28°C | Kelembaban: 80%</p>
-      <p>Angin: 12 km/jam</p>
-    </ion-card-content>
-  </ion-card>
-
-  <!-- 🗺️ LOKASI DESA -->
-  <ion-card class="ion-margin-top" style="border-radius: 14px;">
-    <ion-card-header>
-      <ion-card-title class="ion-text-center">🗺️ Lokasi Desa</ion-card-title>
-    </ion-card-header>
-    <ion-card-content>
-      <iframe
-        src="https://www.google.com/maps/embed?pb=..."
-        width="100%" height="200" frameborder="0" style="border:0; border-radius: 12px;" allowfullscreen="">
-      </iframe>
-    </ion-card-content>
-  </ion-card>
-
-  <!-- 🔗 TOMBOL NAVIGASI -->
-  <ion-button expand="block" shape="round" color="primary" (click)="goToDetail()" class="ion-margin-top">
-    Lihat Detail Data Warga
-    <ion-icon name="arrow-forward-circle" slot="end"></ion-icon>
-  </ion-button>
-
-  <ion-button expand="block" shape="round" fill="outline" color="secondary" (click)="goToTab2()">
-    Formulir pendataan
-    <ion-icon name="navigate" slot="end"></ion-icon>
-  </ion-button>
-
-  <ion-button expand="block" shape="round" fill="outline" color="medium" (click)="goToStatistik()">
-    Statistik Lanjutan
-    <ion-icon name="bar-chart" slot="end"></ion-icon>
-  </ion-button>
-
-  <ion-button expand="block" shape="round" fill="solid" color="danger" (click)="logout()" class="ion-margin-top">
-    Logout
-    <ion-icon name="log-out-outline" slot="end"></ion-icon>
-  </ion-button>
-
+    <ion-button expand="block" color="secondary" class="ion-margin-top">Lihat Semua Laptop</ion-button>
+  </div>
 </ion-content>

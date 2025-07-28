@@ -5,16 +5,21 @@ import { map } from 'rxjs/operators';
 
 @Injectable()
 export class PostProvider {
-  //server: string = 'http://localhost/api1/'; // Jika kamu pakai XAMPP
+    server: string = 'http://localhost/api1/';
+//server: string = 'https://florensia.si2022.com/';
 
-  server: string = 'https://ferdi.si2022.com/'; // Jika kamu pakai XAMPP
-  constructor(public http: HttpClient) {}
+    constructor(public http: HttpClient) { }
 
-  postData(body: any, file: string): Observable<any> {
-    let headers = new HttpHeaders({ 'Content-Type': 'application/json; charset=utf-8' });
+    postData(body: any, file: string): Observable<any> {
+        let type = 'application/json; charset=utf-8';
+        let headers = new HttpHeaders({ 'Content-Type': type });
 
-    return this.http.post(this.server + file, JSON.stringify(body), { headers }).pipe(
-      map((res: any) => res)
-    );
-  }
+        return this.http.post(this.server + file, JSON.stringify(body), {
+            headers: headers,
+        }).pipe(
+            map((res: any) => {
+                return res;
+            })
+        );
+    }
 }

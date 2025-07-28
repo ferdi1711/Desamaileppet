@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { ToastController } from '@ionic/angular';
-import { PostProvider } from '../../providers/post-provider';
-import { IonicModule } from '@ionic/angular';
+import { ToastController, NavController } from '@ionic/angular';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { IonicModule } from '@ionic/angular';
+
 import { ExploreContainerComponentModule } from '../explore-container/explore-container.module';
+import { PostProvider } from '../../providers/post-provider';
 
 @Component({
   selector: 'app-tab2',
@@ -21,62 +22,107 @@ import { ExploreContainerComponentModule } from '../explore-container/explore-co
 })
 export class Tab2Page implements OnInit {
 
-  namalengkap: string = '';
-  nik: string = '';
-  jeniskelamin: string = '';
-  tanggallahir: string = '';
-  alamat: string = '';
-  statuspernikahan: string = '';
-  pekerjaan: string = '';
-  pendidikanterakhir: string = '';
+  // Form fields
+  namaPelanggan: string = '';
+  nohp: string = '';
+  tipeLaptop: string = '';
+  hargaSatuan: number | null = null;
+  totalharga: string = '';
+  jumlah: number | null = null;
+  tanggalPenjualan: string | undefined;
+
+  // Sales data list
+  private daftarPenjualan: any[] = [];
 
   constructor(
     private router: Router,
+    private navCtrl: NavController,
     public toastController: ToastController,
-    private postPvdr: PostProvider
+    private postPvdr: PostProvider,
   ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    // Load from localStorage if any
+    const stored = localStorage.getItem('daftarPenjualan');
+    if (stored) {
+      this.daftarPenjualan = JSON.parse(stored);
+    }
+  }
 
-  async addRegister() {
-    if (!this.namalengkap || !this.nik || !this.jeniskelamin || !this.tanggallahir ||
-        !this.alamat || !this.statuspernikahan || !this.pekerjaan || !this.pendidikanterakhir) {
-      const toast = await this.toastController.create({
-        message: 'Semua field wajib diisi.',
-        duration: 2000
-      });
-      toast.present();
-      return;
+  async simpanPenjualan() {
+    // === VALIDASI ===
+    if (!this.namaPelanggan?.trim()) {
+      return this.presentToast('Nama Pelanggan harus diisi.', 'danger');
+    }
+    if (!this.nohp?.trim()) {
+      return this.presentToast('Nomor HP/WA harus diisi.', 'danger');
+    }
+    if (!this.tipeLaptop?.trim()) {
+      return this.presentToast('Tipe Laptop harus diisi.', 'danger');
+    }
+    if (!this.hargaSatuan || this.hargaSatuan <= 0) {
+      return this.presentToast('Harga Satuan harus lebih dari 2.', 'danger');
+    }
+    if (!this.jumlah || this.jumlah <= 0) {
+      return this.presentToast('Jumlah harus lebih dari 3.', 'danger');
+    }
+    if (!this.tanggalPenjualan) {
+      return this.presentToast('Tanggal Penjualan harus diisi.', 'danger');
     }
 
-    const body = {
-      aksi: 'insert',
-      nama_lengkap: this.namalengkap,
-      nik: this.nik,
-      jenis_kelamin: this.jeniskelamin,
-      tanggal_lahir: this.tanggallahir,
-      alamat: this.alamat,
-      status_pernikahan: this.statuspernikahan,
-      pekerjaan: this.pekerjaan,
-      pendidikan_terakhir: this.pendidikanterakhir
+    const totalHarga = this.hargaSatuan * this.jumlah;
+
+    const data = {
+      namaPelanggan: this.namaPelanggan,
+      nohp: this.nohp,
+      tipeLaptop: this.tipeLaptop,
+      hargaSatuan: this.hargaSatuan,
+      jumlah: this.jumlah,
+      totalHarga:this.totalharga,
+      tanggalPenjualan: this.tanggalPenjualan
     };
 
-    this.postPvdr.postData(body, 'action.php').subscribe(async data => {
-      const toast = await this.toastController.create({
-        message: data.message,
-        duration: 2000
-      });
-      toast.present();
+    const body = {
+      action: 'add_sales_data',
+      sales_data: data
+    };
 
-      if (data.success) {
-        this.router.navigate(['/tab4']);
+    try {
+      const response: any = await this.postPvdr.postData(body, 'action.php').toPromise();
+
+      if (response.success) {
+        this.daftarPenjualan.push(data);
+        localStorage.setItem('daftarPenjualan', JSON.stringify(this.daftarPenjualan));
+
+        console.log('✅ Data berhasil disimpan:', data);
+        await this.presentToast('Data penjualan berhasil disimpan!', 'success');
+        this.resetForm();
+      } else {
+        await this.presentToast(`Gagal menyimpan data: ${response.msg || 'Terjadi kesalahan.'}`, 'danger');
       }
-    }, async err => {
-      const toast = await this.toastController.create({
-        message: 'Terjadi kesalahan koneksi.',
-        duration: 2000
-      });
-      toast.present();
+
+    } catch (err) {
+      await this.presentToast('Terjadi kesalahan koneksi atau server.', 'danger');
+    }
+  }
+
+  private resetForm() {
+    this.namaPelanggan = '';
+    this.nohp = '';
+    this.tipeLaptop = '';
+    this.hargaSatuan = null;
+    this.totalharga ='';
+    this.jumlah = null;
+    this.tanggalPenjualan = undefined;
+  }
+
+  async presentToast(message: string, color: string = 'primary', duration: number = 2000) {
+    const toast = await this.toastController.create({
+      message,
+      duration,
+      color,
+      position: 'bottom'
     });
+    toast.present();
   }
 }
